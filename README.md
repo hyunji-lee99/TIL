@@ -1,5 +1,5 @@
 # TIL
-**<u>2021년 8월 30일</u>**
+**2021년 8월 30일**<br>
 .html - 구동 -> 웹 브라우저(크롬, 엣지, 익스플로러, 사파리, ..)<br>
 마크업 언어 -> 제목, 본문 등의 구조와 표현을 설정할 수 있는 언어 (어떤 액션을 명령하는 프로그래밍 언어와는 다름)
 
@@ -33,7 +33,7 @@ e.i) \<ul><br>
 
 \<!-- 주석 -->
 
-**<u>2021년 8월 31일</u>**
+**2021년 8월 31일**<br>
 html 문서의 구조
 \<!doctype html> : 이 문서의 타입이 html이라는 뜻. 생략해도 문제는 없으나 오랜 시간동안 이것을 선언하는 것이 관습화되어 있어서 남아있는 것임.<br>
 \<html>\</html>: 페이지 전체 내용을 감싸는 최상위(root) 요소<br>
@@ -64,3 +64,55 @@ body 태그 : html 문서의 내용을 나타냄. 한 문서에 하나의 body�
 5. 임베디드 콘텐츠(embeded contents) : 이미지나 비디오 등 외부 소스를 가져오거나 삽입할 때 사용되는 요소.
 6. 인터랙티브 콘텐츠(interactive contents) : 사용자와의 상호작용을 위한 컨텐츠 요소. 
 7. 메타데이터 콘텐츠(metadata contents) : head 태그에 들어가는 문서의 정보나 다른 문서를 가리키는 링크 등을 나타내는 요소.
+
+**2021년 9월 1일**<br>
+VScode 단축키(맥 버전)
+현재 창 닫기 cmd+w<br>
+닫은 창 다시 열기 cmd+shift+t<br>
+에디터 확대 cmd+(+)<br>
+에디터 축소 cmd+(-)
+  
+들여쓰기  탭 또는 cmd+] <- 후자는 전체 문장 들여쓰기<br>
+내어쓰기 shift+tab 또는 cmd+[<br>
+아래에 행 삽입 cmd+enter<br>
+위에 행 삽입  cmd+shift+enter<br>
+현재 행 이동 opt+방향키<br>
+현재 행 복사 opt+shift+방향키<br>
+현재 행 삭제 cmd+shift+k<br>
+주석 토글  cmd+/<br>
+
+h태그 : h1~h6 숫자가 클수록 레벨이 낮음.(프레이징 콘텐츠에 속함)<br>
+웹 브라우저가 h1~h6까지 제목의 정보를 사용해서 자동으로 문서 콘텐츠의 표(목차)를 작성함.<br>
+제목 단계를 건너뛰는 것을 피해야 함. 예를 들어, h2->h1->h3 <br>
+글씨 크기를 조정하기 위해서 h태그를 사용하지 말아야 함. 글씨 사이즈를 설정하고 싶으면 css의 font-size 속성을 사용하면 됨. -> 웹 브라우저마다 h 태그의 글씨 크기를 다르게 설정했기 때문에 브라우저 종류마다 글씨 크기가 달라질 수 있기 때문에!<br>
+페이지 당 하나의 \<h1>을 사용해야 함. h1은 전체 페이지의 목적을 설명해야 하기 때문에! 또, 구글이나 네이버같은 검색엔진이 검색 결과를 표시할 때 내부 정보를 수집해서 결과를 띄어주게 되는데 검색 엔진들이 웹페이지들을 돌아다니면서 검색 결과를 만들어냄. 검색엔진이 h1을 먼저 찾기 때문에 페이지를 정확하게 찾아낼 수 있음. 
+
+p태그 : 하나의 문단을 나타냄. 책에서는 문장들의 집합을 문단이라고 하지만 html에선 텍스트뿐만 아니라 이미지나 입력 폼 등 서로 관련있는 콘텐츠 무엇이든 가능.<br>
+블록 레벨 요소이므로 인라인 레벨 요소를 포함할 수도 있음. <br>
+\<p>첫 번째 문단입니다.<br>
+첫 번째 문단입니다.<br>
+첫 번째 문단입니다.<br>
+첫 번째 문단입니다.<br>
+\</p><br>
+위 예시와 같이 p태그 안에 개행을 포함해서 입력을 해도 결과에서는 개행을 무시하고 출력됨.<br>
+\<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, laudantium minus nisi vero amet id nam pariatur quis facere iusto consectetur! Quaerat aspernatur autem tempore veniam minus incidunt sit vero!\</p>
+\<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. In, laudantium minus nisi vero amet id nam pariatur quis facere iusto consectetur! Quaerat aspernatur autem tempore veniam minus incidunt sit vero!\</p>
+위 예시와 같이 p태그 여러 개를 사용하면 결과에서는 문단 사이에 여백이 생김. 이러한 여백은 텍스트 내용의 한 줄 너비만큼 차지함. 이러한 여백을 정확히 몇 px로 할 지 정하고 싶으면 css 스타일링으로 여백을 줄 수 있음. <br>
+e.i) p { <br>
+margin-bottem : 2px;<br>
+}<br>
+빈 p태그를 이용해서 여백을 만들려고 하면 안됨. 스크린 리더가 어떤 p 태그를 읽고 다음 p 태그를 읽으려고 할 때 p 태그가 비어있으면 작동이 어색할 수 있음.
+
+*lorem 사용해서 임의의 긴 문장을 입력할 수 있음.<br>
+*html에선 여러 개의 스페이스가 있어도 하나의 스페이스로 처리함.<br>
+
+br태그 : 텍스트 안에 줄바꿈을 생성함. 즉, line-break할 때 사용. 빈 요소이기 때문에 클로징태그 필요없음. <br>
+문단과 문단 사이의 여백을 많이 주고 싶다고 해서 br태그를 많이 사용하면 안됨. 여백을 많이 주어 나누고 싶은 문단을 각각의 p태그로 나누고 css 스타일링을 사용해서 여백을 늘려주어야 함.
+
+block quote, q태그 : 둘 다 인용을 목적으로 함. block quote 태그는 블록 요소이고, 텍스트가 긴 인용문에 사용함. q태그는 인라인 요소이며, 텍스트가 짧은 인용문에 사용함. <br>
+<img width="1164" alt="스크린샷 2021-09-02 오전 1 06 53" src="https://user-images.githubusercontent.com/58133945/131708464-9941f19d-b855-4642-ae8b-b64f4b81df99.png">
+<img width="1087" alt="스크린샷 2021-09-02 오전 1 23 04" src="https://user-images.githubusercontent.com/58133945/131708493-06daf758-54e7-48ce-8db8-baa443a76ac7.png">
+block quote는 일반 p태그와 다르게 앞쪽에 여백이 들어감. block quote 안에 여러 개의 p태그를 넣을 수 있음.<br>
+p 태그 내부에 block quote를 작성하면 안됨. p태그는 내부에 있는 요소가 block 요소이면 자동으로 p태그가 닫힘. 즉, "~같이 이야기한다."에서 p태그가 닫힌 걸로 인식됨. 그래서 앞에서 닫았는데 뒤에서  또 닫은 걸로 인식하기 때문에 웹페이지가 정확하게 인식을 하지 못함.<br>
+q 태그는 기본 스타일링으로 앞뒤 쌍따옴표가 들어감. 인라인 요소기 때문에 개행이 되지 않고 연결되어 출력됨. <br>
+block quote 태그와 q 태그가 공통으로 사용할 수 있는 attribute는 인용문의 출처 문서나 메시지를 가리키는 url, 인용문의 맥락 또는 출처 정보를 가리킬 용도인 cite를 사용할 수 있음. attribute는 사용자의 눈에는 보이지 않기 때문에 브라우저만 알고 있는 정보로 사용됨. 출처를 알아야 할 필요가 있을 때 이러한 attribute를 이용해서 알 수 있는 것임. 
