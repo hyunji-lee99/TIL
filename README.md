@@ -232,7 +232,7 @@ table 태그는 복잡한 데이터 형식을 보기 좋게 다차원 행렬로 
 
  **2021년 9월 7일**<br>
  하나의 웹페이지를 헤더, 본문,  footer를 구획으로 나눌 수 있는 것 처럼 table도 thead, tbody, tfoot 태그를 이용해서 나눌 수 있음. <br>
- <img width="304" alt="스크린샷 2021-09-07 오후 3 31 56" src="https://user-images.githubusercontent.com/58133945/132318843-b418263e-3365-4a6b-8d74-892466ef08b8.png">
+ <img width="304" alt="스크린샷 2021-09-07 오후 3 31 56" src="https://user-images.githubusercontent.com/58133945/132318843-b418263e-3365-4a6b-8d74-892466ef08b8.png"><br>
  테이블의 head로 나눌 부분의 tr(=table row)태그 전체를 thead태그로 묶어줌. thead태그는 table태그의 바로 아래 자식으로 들어가야 하고, 그 아래에 tr태그를 둘 수 있음. thead 태그를 사용한다면 tr태그를 thead태그의 형제로 두면 안됨. thead태그의 형제는 반드시 tbody, tfoot 태그를 두어야 함.<br>
  tbody, tfoot 태그 사용법도 thead 태그와 마찬가지로, body, footer로 나눌 부분을 태그로 묶어줌. 이런 식으로 테이블의 구획을 나눠주면 스타일링 측면에 용이함.
 
@@ -256,27 +256,27 @@ svg(.svg) : 위 4가지 이미지는 비트맵(래스터) 이미지인 반면, s
 
 srcset 속성 : 사용자의 뷰 포트에 대한 반응형 이미지를 만들기 위해서 사용하는 속성임. 뷰 포트의 사이즈에 따라서 다른 사이즈의 이미지를 표현하기 위해 사용됨.<br>
 \<img src="~.png" <br>
-srcset="~/small.png 300w,<br>
-            ~/medium.png 450w,<br>
-            ~/large.png 600w"<br>
+srcset="blahblah/small.png 300w,<br>
+            blahblah/medium.png 450w,<br>
+            blahblah/large.png 600w"<br>
 alt="responsive images"><br>
 
 sizes 속성 : 작은 화면에서 접속한 사람은 작은 이미지, 중간 화면에서 접속한 사람은 중간 이미지, ... 등으로 뷰포트의 사이즈에 따라서 다른 이미지를 표현하는 srcset와 달리, sizes는 특정 조건에 따라서 파일의 사이즈(가로값)를 지정해주는 속성임. <br>
 sizes="(min-width : 600px) 600px" -> 600px보다 큰 화면의 넓이를 가진 사용자에겐 600px 의 이미지를 출력함.<br>
-,min-width: 450px) 450px -> 조건은 위에서 부터 읽기 때문에 위에서 걸리지 않은 것들 중에 450px 보다 큰 경우 450px 그대로 출력함. 즉 450px< <600px"
+,min-width: 450px) 450px -> 조건은 위에서 부터 읽기 때문에 위에서 걸리지 않은 것들 중에 450px 보다 큰 경우 450px 그대로 출력함. 즉 450px< <600px<br>
 , 300px" -> 위 조건에서 걸리지않은 나머지는 모두 300px로 출력함.<br>
 
 video 태그 : 비디오를 출력하는 태그, src태그를 이용해서 출력할 비디오의 경로를 작성함. 이미지 태그와 달리 빈 요소가 아니기 때문에 자식요소를 가질 수 있음.<br> 출력하고자 하는 비디오가 특정 브라우저에서 지원하지 않을 경우, 안내 멘트를 출력할 수도 있음.<br>
-<img width="464" alt="스크린샷 2021-09-07 오후 5 41 09" src="https://user-images.githubusercontent.com/58133945/132319255-9cfc5f88-b86b-4585-be1b-aa5a44cafccd.png">
+<img width="464" alt="스크린샷 2021-09-07 오후 5 41 09" src="https://user-images.githubusercontent.com/58133945/132319255-9cfc5f88-b86b-4585-be1b-aa5a44cafccd.png"><br>
 src속성이 이미지태그와 달리 optional임. 비디오 태그가 자식요소를 가질 수 있기 때문에 자식요소에 source 태그를 작성해서 출력할 수도 있음. <br>
-<img width="468" alt="스크린샷 2021-09-07 오후 5 43 55" src="https://user-images.githubusercontent.com/58133945/132319389-fd86840b-42b3-4808-8bd6-72fc21875996.png">
+<img width="468" alt="스크린샷 2021-09-07 오후 5 43 55" src="https://user-images.githubusercontent.com/58133945/132319389-fd86840b-42b3-4808-8bd6-72fc21875996.png"><br>
 보통의 비디오 플레이어에서 나타나는 재생, 정지 버튼이나 음량 조절, 동영상 탐색 바 등의 요소들이 기본적으로 나타나지 않음.  이러한 요소들을 사용하기 위해선 controls 속성을 사용할 수 있음. 속성값은 boolean이며 기본값이 false임.<br>
 autoplay 속성은 자동으로 비디오를 재생해주는 속성이지만, 새로고침 버튼을 누르면 비디오가 자동으로 재생되지 않음. 그 이유는 사운드를 가진 비디오의 경우, 사이트에 진입하자마자 사운드가 자동재생되면 사용자의 입장에서 깜짝 놀라거나 좋지 않은 경험을 할 수 있기 때문! 그래서 autoplay를 원활하게 사용하려면 muted 속성을 사용해서 음소거를 시키면 됨.  <br>
 loop 속성은 동영상 재생이 끝나면 처음부터 다시 반복해서 재생하는 속성이며, 속성값은 boolean임.또, 이미지와 마찬가지로 width와 height 속성을 사용해서 크기를 정할 수 있음. <br>
 poster 속성은 썸네일을 띄우는 속성임. 사용자가 동영상을 재생하거나 탐색하기 전에 출력되는 포스터 프레임 주소를 표현함. 속성이 명시되지 않으면 첫번째 프레임을 포스터 프레임으로 출력함. e.i) \<video poster="image/poster.png">
 
 audio 태그 : 대부분의 속성이 비디오 태그와 동일. src 속성을 사용하거나. audio 태그의 자식요소로 source 태그를 가질 수 있음. source 태그를 사용해서 한 개이상의 오디오 소스를 가질 수 있음. (multiple source) <br>
-<img width="578" alt="스크린샷 2021-09-07 오후 5 58 54" src="https://user-images.githubusercontent.com/58133945/132319560-ba96aa33-cbad-4f17-a52d-58b1a47f7bf7.png">
+<img width="578" alt="스크린샷 2021-09-07 오후 5 58 54" src="https://user-images.githubusercontent.com/58133945/132319560-ba96aa33-cbad-4f17-a52d-58b1a47f7bf7.png"><br>
 현재 브라우저가 지원가능한 형식인지 첫번째 source 태그부터 조회. 만약 모든 source태그가 지원가능한 형식이 아닌 경우, 재생할 수 없음을 알리는 메시지 작성 가능.
 
 iframe 태그 : 인라인 프레임 요소. 외부의 웹사이트 소스(타 html 페이지)를 가져와서 창 안에 띄어주는 기능을 함. 모든 웹사이트를 가져와서 사용할 수 있는 것은 아니고, 보통 구글맵 정도를 불러올 수 있음. 
