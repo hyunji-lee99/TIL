@@ -307,7 +307,7 @@ fieldset과 legend : 여러 가지 input과 label을 그룹으로 나누어서 �
 <img width="455" alt="스크린샷 2021-09-07 오후 11 00 50(2)" src="https://user-images.githubusercontent.com/58133945/132370510-110ec0f4-2f72-4b3d-a71d-fc1f6ecb2a1a.png">
 <img width="332" alt="스크린샷 2021-09-07 오후 11 00 50" src="https://user-images.githubusercontent.com/58133945/132370516-d7f36c44-ed2f-4fdd-bafe-34d1b355f7ba.png"><br>
 위 사진의 legend의 스타일링은 기본으로 적용되는 것이며, 브라우저마다 다르기 때문에 위 기본 스타일링의 의존하면 안됨. 특정한 스타일링을 통일해서 사용하고 싶다면 차라리 div로 묶어서 스타일링하는 것이 더 나을 수도 있음. 
-input의 속성으로 disabled라는 속성을 넣어주면 input 하나에 단일하게 입력이 불가능하게 됨. fieldset에 disabled 속성을 넣어주면 해당 fieldset에 속하는 모든 input의 입력이 불가능하게 됨.
+input의 속성으로 disabled라는 속성을 넣어주면 input 하나에 단일하게 입력이 불가능하게 됨. fieldset에 disabled 속성을 넣어주면 해당 fieldset에 속하는 모든 input의 입력이 불가능하게 됨.<br>
 <img width="533" alt="스크린샷 2021-09-07 오후 11 06 41(2)" src="https://user-images.githubusercontent.com/58133945/132370974-3e9fc62a-381c-4697-a627-7ff201cb8289.png">
 <img width="332" alt="스크린샷 2021-09-07 오후 11 06 41" src="https://user-images.githubusercontent.com/58133945/132371053-7512c796-8fdc-4c23-96f2-00229d7ebecd.png"><br>
 
