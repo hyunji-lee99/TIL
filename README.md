@@ -1,7 +1,7 @@
 # Today  I Learned
 ## HTML
 <ul>
-<li>[2021년 8월 30일] (HTML/20210830.md)</li>
+<li>[2021년 8월 30일] (https://github.com/hyunji-lee99/TIL/blob/main/HTML/20210830.md)</li>
 <li>[2021년 8월 31일] (HTML/20210831.md)</li>
 <li>[2021년 9월 1일] (HTML/20210901.md)</li>
 <li>[2021년 9월 2일] (HTML/20210902.md)</li>
