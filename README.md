@@ -20,11 +20,11 @@
 - [Flexbox, Grid <sub>2021년 10월 20일</sub>](CSS/20211020.md)
 
 ## Data Analysis
--[데이터 분석에 필요한 파이썬 기초](data_analysis/fundamental_python.md)
--[데이터 분석 라이브러리](data_analysis/python_library.md)
--[데이터 분석 프로젝트](data_analysis/data_analytics.md)
+- [데이터 분석에 필요한 파이썬 기초](data_analysis/fundamental_python.md)
+- [데이터 분석 라이브러리](data_analysis/python_library.md)
+- [데이터 분석 프로젝트](data_analysis/data_analytics.md)
 
 ## AI
 - [인공지능 기초](AI/fundamental_ai.md)
--[딥러닝](AI/deeplearning.md)
--[인공지능 프로젝트](AI/ai_project.md)
+- [딥러닝](AI/deeplearning.md)
+- [인공지능 프로젝트](AI/ai_project.md)
