@@ -28,3 +28,6 @@
 - [인공지능 기초](AI/fundamental_ai.md)
 - [딥러닝](AI/deeplearning.md)
 - [인공지능 프로젝트](AI/ai_project.md)
+
+## Django
+- [튜토리얼<sub>2022년 1월 4일</sub>](Django/tutorial.md)
