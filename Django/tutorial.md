@@ -487,3 +487,103 @@ post_list.html에서 적절한 위치에 <code>{{ posts }}</code>를 넣어줍�
 ```
 
 # 템플릿 확장하기
+장고에선 <b>템플릿 확장(template extending)</b>이 가능합니다. 웹사이트 안의 서로 다른 페이지에서 HTML의 일부를 동일하게 재사용할 수 있다는 뜻입니다.
+이 방법을 사용하면 동일한 정보/레이아웃을 사용하고자 할 때, 모든 파일마다 같은 내용을 반복해서 입력할 필요가 없게 됩니다. 또, 뭔가 수정할 부분이 생겼을 때, 각각 모든 파일을 수정할 필요 없이 딱 한번만 수정하면 됩니다.
+
+### 기본 템플릿 생성하기
+기본 템플릿은 웹사이트 내 모든 페이지에 확장되어 사용되는 가장 기본적인 템플릿입니다.
+<code>blog/templates/blog/</code>에 <code>base.html</code> 파일을 만듭니다.
+```
+blog
+└───templates
+    └───blog
+            base.html
+            post_list.html
+```
+
+<code>post_list.html</code>에 있는 모든 내용을 <code>base.html</code>에 아래 내용을 복사해 붙여넣습니다.
+```
+{% load static %}
+<html>
+    <head>
+        <title>Django Girls blog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+            <h1><a href="/">Django Girls Blog</a></h1>
+        </div>
+
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                {% for post in posts %}
+                    <div class="post">
+                        <div class="date">
+                            {{ post.published_date }}
+                        </div>
+                        <h1><a href="">{{ post.title }}</a></h1>
+                        <p>{{ post.text|linebreaksbr }}</p>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+```
+
+그 다음 <code>base.html</code>에서 <code>{% for post in posts %}</code>부터 <code>{% endfor %}</code>까지의 코드를 다음 코드로 바꿉니다.
+```
+{% block content %}
+{% endblock %}
+```
+이 코드의 의미는 우리가 block을 만들었다는 의미입니다. 템플릿 태그 <code>{% block %}</code>으로 HTML 내에 들어갈 수 있는 공간을 만들었습니다.
+
+<code>blog/templates/blog/post_list.html</code> 파일을 열어서 <code>{% for post in posts %}</code>부터 <code>{% endfor %}</code>까지만 남기고 전부 지웁니다. 그러면 <code>post_list.html</code> 파일의 내용은 다음 코드만 남을 겁니다.
+```
+{% for post in posts %}
+    <div class="post">
+        <div class="date">
+            {{ post.published_date }}
+        </div>
+        <h1><a href="">{{ post.title }}</a></h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+{% endfor %}
+```
+이 코드를 모든 컨텐츠 블록에 대한 템플릿의 일부로 사용합니다. 이 파일에 블록 태그를 추가해봅시다.
+블록 태그가 <code>base.html</code> 파일의 태그와 일치해야 합니다. 또, 콘텐츠 블록에 속한 모든 코드를 포함하게 만들어야 합니다.
+이를 위해서 post_list.html 파일의 코드를 <code>{% block content %}</code>와 <code>{% endblock %}</code>로 묶어줍니다.
+```
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
+```
+이제 마지막으로, 두 템플릿을 연결해줘야 합니다. 확장 태그를 파일 맨 처음에 추가합니다.
+```
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
+```
