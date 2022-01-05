@@ -309,3 +309,181 @@ application = StaticFilesHandler(get_wsgi_application())
 ```
 이 파일은 PythonAnywhere에게 웹 어플리케이션의 위치와 Django 설정 파일명을 알려주는 역할을 합니다.
 Reload버튼을 누르면 페이지 최상단에 배포된 링크를 발견할 수 있을겁니다.
+
+# Django View
+첫 뷰를 만들어봅시다.
+<code>blog/views.py</code>에 view를 추가하는 코드를 작성합니다.
+```
+from django.shortcuts import render
+
+# Create your views here.
+def post_list(request):
+    return render(request, 'blog/post_list.html', {'posts':posts})
+```
+이 함수는 post_list라는 함수를 만들었습니다. 이 함수는 요청(request)를 넘겨받아 render 메소드를 호출합니다. <code>blog/post_list.html</code> 템플릿(아직은 작성하지 않았습니다. 곧 작성할 거에요!)을 보여줍니다.
+
+이렇게 작성한 뷰를 사용하기 위해선 <code>URLconf</code>를 만들어서 뷰를 URL에 맵핑해야 합니다. 장고는 <code>URLconf(URL configuration)</code>을 사용합니다. URLconf는 장고에서 URL과 일치하는 뷰를 찾기 위한 패턴들의 집합입니다. blog 디렉터리 안에 URLconf를 만들기 위해서 urls.py라는 이름의 파일을 만들어서 아래 두 줄을 추가합니다.
+```
+from django.urls import path
+from . import views
+```
+이 두 줄로 장고함수인 path와 blog 애플리케이션에서 사용할 모든 <code>views</code>를 가져왔습니다.
+다음으로, URL 패턴을 추가합니다.
+```
+urlpatterns=[
+  path('',views.post_list,name='post_list')
+]
+```
+이제 <code>post_list</code>라는 <code>view</code>가 루트 URL에 할당되었습니다. 이 URL 패컨은 빈 문자열에 매칭되고, 장고 URL 확인자(resolver)는 전체 URL 경로에서 접두어에 포함되는 도메인 이름(i.e. http://127.0.0.1:8000/)을 무시하고 받아들입니다. 이 패턴은 장고에게 누군가 웹사이트에 'http://127.0.0.1:8000/'로 접속했을 때 <code>views.post_list</code>를 보여줍니다.
+
+다음으로, 루트 URLconf가 <code>blog.urls</code> 모듈을 볼 수 있도록 해줘야 합니다. <code>mysite/urls.py</code> 파일에 <code>django.conf.urls.include</code>를 import하고 urlpatterns 리스트 안에 <code>include()</code>를 넣어 줍니다.
+```
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('blog.urls')),
+]
+```
+<code>include()</code> 함수는 루트 URLconf가 다른 URLconf를 참조할 수 있도록 합니다. 지금부터 장고는  http://127.0.0.1:8000/ 로 들어오는 모든 접속 요청을 <code>blog.urls</code>로 전송해 추가 명령을 찾습니다.
+
+# Django Templates
+템플릿은 <code>blog/templates/blog</code>디렉토리에 저장됩니다. 먼저 <code>blog</code> 디렉토리 안에 하위 디렉토리인 <code>templates</code>를 생성합니다. 그리고 <code>templates</code> 디렉토리 내 <code>blog</code>라는 하위 디렉토리를 생성합니다. post_list.html과 같은 html 파일에 웹에 보여주고자 하는 내용을 작성하면 됩니다.
+```
+blog
+└───templates
+ └───blog
+```
+
+# Django shell
+```
+python manage.py shell
+```
+위 명령을 콘솔에서 실행합니다. 실행하면 다음과 같은 인터랙티브 콘솔로 들어갑니다.
+```
+(InteractiveConsole)
+>>>
+```
+파이썬 프롬프트와 비슷하지만, 장고만의 명령을 내릴 수 있기도 하고, 파이썬의 모든 명령어를 여기서 사용할 수 있습니다.
+
+### 모든 객체 조회하기
+아래 코드처럼 모든 객체를 조회하는 코드를 작성하면 NameError가 발생합니다.
+```
+>>> Post.objects.all()
+Traceback (most recent call last):
+      File "<console>", line 1, in <module>
+NameError: name 'Post' is not defined
+```
+객체를 조회하려면 먼저 import를 해줘야 합니다.
+```
+>>> from blog.models import Post
+```
+Post 모델을 blog.models에서 불러왔습니다. 이제 우리가 등록했던 모든 글이 출력됩니다.
+```
+>>> Post.objects.all()
+<QuerySet [<Post: my post title>, <Post: another post title>]>
+```
+이러한 게시글들은 장고 관리자 인터페이스로 만들었던 것들이비낟. 그런데, 파이썬으로 글을 포스팅하는 방법도 있습니다.
+
+### 객체 생성하기
+데이터베이스에 새 글 객체를 저장하는 방법입니다.
+우선 작성자로서 User 모델의 인스턴스를 가져와서 전달해줘야 합니다.
+```
+>>> from django.contrib.auth.models import User
+>>> me=User.objects.get(username='ola')
+```
+위와 같이 <code>사용자이름(username)</code>가 'ola'인 User 인스턴스를 받아왔습니다.
+```
+>>> Post.objects.create(author=me, title='Sample title',text='Test')
+```
+이제 파이썬으로 데이터베이스에 새로운 게시글을 등록했습니다.
+제대로 작동했는지 확인해봅시다.
+```
+>>> Post.objects.all()
+<QuerySet [<Post: my post title>, <Post: another post title>, <Post: Sample title>]>
+```
+같은 방식으로 여러 개의 글을 추가해보세요.
+
+장고 쿼리셋의 중요한 기능은 데이터를 필터링하는 것입니다. 예를 들어, 제목(title)에 'title'이라는 글자가 들어간 글들만 뽑아내고 싶다면?
+```
+>>> Post.objects.filter(title__contains='title')
+[<Post: Sample title>, <Post: 4th title of post>]
+```
+잘 출력됩니다. 여기서 title과 contains 사이에 있는 밑줄(_)은 2개입니다. 장고 ORM은 필드 이름("title")과 연산자와 필터("contains")를 밑줄 2개로 구분해서 사용합니다.
+파이썬 콘솔에서 추가한 게시물은 먼저 게시하려는 게시물의 인스턴스를 얻어서 <code>publish</code> 메소드를 사용해서 게시합니다.
+```
+>>> post = Post.objects.get(title="Sample title")
+>>> post.publish()
+```
+
+# 템플릿 동적 데이터
+콘텐츠(데이터베이스 안에 저장되어 있는 모델)가져와서 템플릿에 넣어 보여주는 것을 해보려고 합니다.
+뷰는 모델과 템플릿을 연결하는 역할을 합니다. <code>post_list</code>를 뷰에서 보여주고 이를 템플릿에 전달하기 위해서는 모델을 가져와야 합니다. 일반적으론 뷰가 템플릿에서 모델을 선택하도록 만들어야 합니다.
+
+<code>blog/views.py</code> 파일을 열어서 <code>post_list</code> 뷰 내용을 봅시다.
+```
+from django.shortcuts import render
+
+def post_list(request):
+  return render(request,'blog/post_list.html',{})
+```
+<code>models.py</code> 파일에 정의된 모델을 가져옵니다. ```from .models import Post```를 추가합니다.
+models 앞에 마침표<code>.</code>는 현재 디렉토리 또는 애플리케이션을 의미합니다. 동일한 디렉토리 내에 views.py, models.py가 있기 때문에 <code>. 파일명</code> 형식으로 내용을 가져올 수 있습니다.
+Post 모델에서 블로그 글을 가져오기 위해선 쿼리셋이 필요합니다.
+```
+from django.shortcuts import render
+from django.utils import timezone
+from .models import Post
+
+def post_list(request):
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    return render(request, 'blog/post_list.html', {})
+```
+
+<code>blog.views.py</code> 파일 내에서 posts로 쿼리셋의 이름을 짓고 이를 이용해서 데이터를 정렬합니다.  
+이제 posts 쿼리셋을 템플릿에 보내는 방법을 알아봅시다.
+render 함수의 <code>{}</code> 부분에 매개변수 <code>{'posts': posts}</code>를 추가합니다.
+```
+from django.shortcuts import render
+from django.utils import timezone
+from .models import Post
+
+def post_list(request):
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    return render(request, 'blog/post_list.html', {'posts': posts})
+```
+이제 템플릿으로 돌아가서 매개변수로 전달한 쿼리셋을 보이게 해봅시다.
+이때, 장고에 내장된 <b>템플릿 태그(template tag)</b>라는 기능을 사용합니다.
+
+### 템플릿 태그란?
+브라우저는 파이썬 코드를 이해할 수 없기 때문에 HTML에 파이썬 코드를 바로 넣을 순 없습니다. 템플릿 태그는 파이썬을 HTML로 바꿔주어, 빠르고 쉽게 동적인 웹사이트를 만들어 줍니다.
+
+위에서 글 목록이 있는 posts 변수를 템플릿으로 넘겨주었습니다. 이제 넘겨진 posts 변수를 받아 HTML에 나타나도록 해보겠습니다.
+장고 템플릿 안에 있는 값을 출력하려면 중괄호 안에 변수 이름을 넣어 표시해야 합니다.
+```
+{{ post }}
+```
+post_list.html에서 적절한 위치에 <code>{{ posts }}</code>를 넣어줍니다.
+장고가 <code>{{ posts }}</code>를 객체 목록으로 이해하고 처리합니다. 목록을 보여주는 방식으로 <code>for loop</code>를 이용할 수 있습니다.
+```
+{% for post in posts %}
+    {{ post }}
+{% endfor %}
+```
+다음과 같은 형식으로 적용할 수 있습니다.
+```
+<div>
+    <h1><a href="/">Django Girls Blog</a></h1>
+</div>
+
+{% for post in posts %}
+    <div>
+        <p>published: {{ post.published_date }}</p>
+        <h1><a href="">{{ post.title }}</a></h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+{% endfor %}
+```
+
+# 템플릿 확장하기
