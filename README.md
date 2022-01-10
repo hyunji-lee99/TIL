@@ -32,3 +32,4 @@
 ## Django
 - [튜토리얼<sub>2022년 1월 4일</sub>](Django/tutorial.md)
 - [React와 연동<sub>2022년 1월 5일</sub>](Django/react_api.md)
+- [Django api로 React에서 데이터받기<sub>2022년 1월 10일</sub>](Django/project1.md)
