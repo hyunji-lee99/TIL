@@ -5,6 +5,7 @@ backend 디렉토리를 생성해서 그 안에 django project를 생성합니�
 python3 -m venv myvenv
 source myvenv/bin/activate
 python3 -m pip install --upgrade pip
+pip install django~=2.0.0
 mkdir backend
 cd backend
 django-admin startproject djangoapi .
@@ -134,7 +135,7 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK={
     'DEFAULT_PERMISSION_CLASSES':[
-        'rest_framwork.permissions.AllowAny'
+        'rest_framework.permissions.AllowAny'
     ]
 }
 ```
