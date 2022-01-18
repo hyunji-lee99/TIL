@@ -1,7 +1,7 @@
 # React에서 Django로 데이터 보내기(post)
 
 우선, django에서의 설정은 다음 문서와 똑같이 해줍니다.
-[Django api로 React에서 데이터받기](Django/project1.md)
+[Django api로 React에서 데이터받기](https://github.com/hyunji-lee99/TIL/blob/main/Django/project1.md)
 
 frontend 디렉토리에 src/App.js의 코드를
 다음과 같이 바꿔줍니다.
