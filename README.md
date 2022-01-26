@@ -36,3 +36,4 @@
 - [React에서 Django로 데이터 보내기](Django/project2.md)
 - [postgreSQL, pgAdmin4 설치, Django 연동](Django/postgreSQL.md)
 - [여러 개의 데이터를 한 번에 데이터베이스로 전송하기](Django/multiplepost.md)
+- [Google Bigtable과 Django 연동하기](Django/bigtableconnect.md)
