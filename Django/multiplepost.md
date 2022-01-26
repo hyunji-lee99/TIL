@@ -1,7 +1,7 @@
 # 여러 개의 데이터를 한 번에 데이터베이스로 전송하기
 
 postgreSQL이 데이터베이스로 작동하는 Django를 위해서 아래 게시글을 참고해주세요.
-[PostgreSQL과 Django 연동하기]('https://github.com/hyunji-lee99/TIL/blob/main/Django/postgreSQL.md')
+[PostgreSQL과 Django 연동하기](https://github.com/hyunji-lee99/TIL/blob/main/Django/postgreSQL.md)
 
 우선, 다음과 같은 여러 개의 데이터를 Post할 때 한 번에 데이터베이스에 분리해서 저장하고자 합니다.
 ```
